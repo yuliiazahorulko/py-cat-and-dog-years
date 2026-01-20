@@ -1,33 +1,21 @@
 from app.main import get_human_age
+import pytest
 
 
-def test_bottom_value_for_first_15_years() -> None:
-    assert get_human_age(0, 0) == [0, 0]
-
-
-def test_top_value_for_first_15_years() -> None:
-    assert get_human_age(14, 14) == [0, 0]
-
-
-def test_bottom_value_for_next_9_years() -> None:
-    assert get_human_age(15, 15) == [1, 1]
-
-
-def test_top_value_for_next_9_years() -> None:
-    assert get_human_age(23, 23) == [1, 1]
-
-
-def test_bottom_value_for_every_4_cat_years() -> None:
-    assert get_human_age(24, 24) == [2, 2]
-
-
-def test_top_value_for_every_4_cat_years() -> None:
-    assert get_human_age(27, 27) == [2, 2]
-
-
-def test_bottom_value_for_every_5_next_dog_years() -> None:
-    assert get_human_age(28, 28) == [3, 2]
-
-
-def test_top_value_for_every_5_next_dog_years() -> None:
-    assert get_human_age(100, 100) == [21, 17]
+@pytest.mark.parametrize(
+    "cat_age,dog_age,result",
+    [
+        (0, 0, [0, 0]),
+        (14, 14, [0, 0]),
+        (15, 15, [1, 1]),
+        (23, 23, [1, 1]),
+        (24, 24, [2, 2]),
+        (27, 27, [2, 2]),
+        (28, 28, [3, 2]),
+        (100, 100, [21, 17])
+    ]
+)
+def test_get_human_age(cat_age: int, dog_age: int, result: list) -> None:
+    assert (
+        get_human_age(cat_age, dog_age) == result
+    ), f"Ages of cat(age={cat_age}) and dog(age={dog_age}) should be {result[0]} and {result[1]}"
