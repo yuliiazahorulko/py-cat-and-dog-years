@@ -18,4 +18,5 @@ import pytest
 def test_get_human_age(cat_age: int, dog_age: int, result: list) -> None:
     assert (
         get_human_age(cat_age, dog_age) == result
-    ), f"Ages of cat(age={cat_age}) and dog(age={dog_age}) should be {result[0]} and {result[1]}"
+    ), f"Ages of cat(age={cat_age}) and dog(age={dog_age}) " \
+       f"should be {result[0]} and {result[1]}"
