@@ -1,4 +1,9 @@
 def calculate_age(age: int, first_year:int, next_year: int, every_year: int) -> int:
+    if age < 0:
+        raise ValueError("Age can't be negative!")
+    if not isinstance(age, int):
+        raise TypeError("Age should be int value type!")
+
     if age < first_year:
         return 0
     if first_year <= age < first_year + next_year:
